@@ -1,0 +1,75 @@
+logging:
+  level:
+    ROOT: INFO
+    ai.flowx.quickstart.connector: DEBUG
+    org:
+      springframework:
+        web: INFO
+        transaction.interceptor: INFO
+server:
+  port: 8080
+  contextPath: /
+
+spring:
+  application:
+    name: quickstart-connector
+  jackson:
+    serialization:
+      write_dates_as_timestamps: false
+      fail-on-empty-beans: false
+
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      properties:
+        interceptor:
+          classes: io.opentracing.contrib.kafka.TracingProducerInterceptor
+  #      security.protocol: "SASL_PLAINTEXT"
+  #      sasl.mechanism: "OAUTHBEARER"
+  #      sasl.jaas.config: "org.apache.kafka.common.security.oauthbearer.OAuthBearerLoginModule required ;"
+  #      sasl.login.callback.handler.class: io.strimzi.kafka.oauth.client.JaasClientOauthLoginCallbackHandler
+    consumer:
+      group-id: kafka-test-group
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      properties:
+        interceptor:
+          classes: io.opentracing.contrib.kafka.TracingConsumerInterceptor
+  #      security.protocol: "SASL_PLAINTEXT"
+  #      sasl.mechanism: "OAUTHBEARER"
+  #      sasl.jaas.config: "org.apache.kafka.common.security.oauthbearer.OAuthBearerLoginModule required ;"
+  #      sasl.login.callback.handler.class: io.strimzi.kafka.oauth.client.JaasClientOauthLoginCallbackHandler
+
+kafka:
+  consumerThreads: 3
+  authorizationExceptionRetryInterval: 10
+  topicNameIn: ai.flowx.connector.in
+  topicNameOut: ai.flowx.in.from_connector
+
+# ===================================================================
+# OpenID Connect Settings.
+# ===================================================================
+security:
+  type: oauth2
+  basic:
+    enabled: true
+  oauth2:
+    base-server-url: ${OAUTH2_PROTOCOL:http}://${OAUTH2_URL:localhost:8080}
+    realm: ${OAUTH2_REALM:flowx}
+    client:
+      access-token-uri: ${security.oauth2.base-server-url}/auth/realms/${security.oauth2.realm}/protocol/openid-connect/token
+      user-authorization-uri: ${security.oauth2.base-server-url}/auth/realms/${security.oauth2.realm}/protocol/openid-connect/auth
+      client-id: ${OAUTH2_CLIENT_ID:flowx-service}
+      client-secret: ${KEYCLOAK_CLIENT_SECRET:wrongsecret}
+      authentication-scheme: header
+      client-authentication-scheme: header
+    resource:
+      filter-order: 3
+      user-info-uri: ${security.oauth2.base-server-url}/auth/realms/${security.oauth2.realm}/protocol/openid-connect/userinfo
+      token-info-uri: ${security.oauth2.base-server-url}/auth/realms/${security.oauth2.realm}/protocol/openid-connect/token/introspect
+      prefer-token-info: false
+      jwt:
+        key-uri: ${security.oauth2.base-server-url}/auth/realms/${security.oauth2.realm}
