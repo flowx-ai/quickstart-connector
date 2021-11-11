@@ -3,7 +3,7 @@
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/ec3388834bc74032ac69bdf8adf050f3)](https://www.codacy.com?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=flowx-ai/quickstart-connector&amp;utm_campaign=Badge_Grade)
 [![Java version](https://img.shields.io/badge/java%20version-11-yellow.svg?color=yellow)](https://adoptopenjdk.net/index.html?variant=openjdk11&jvmVariant=hotspot)
 [![String boot version](https://img.shields.io/badge/spring%20boot%20version-2.5.4-9cf.svg?color=9cf)](https://spring.io/projects/spring-boot)
-[![License: MPL 2.0](https://img.shields.io/badge/license-MPL%202.0-brightgreen.svg)](https://opensource.org/licenses/MPL-2.0)
+[![License: MIT](https://img.shields.io/badge/license-MIT-orange.svg)](https://opensource.org/licenses/MIT)
 
 Basic setup for a connector.
 
@@ -37,7 +37,8 @@ A docker-compose file is provided for starting these dependencies locally.
 ### Code quality
 
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/ec3388834bc74032ac69bdf8adf050f3)](https://www.codacy.com?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=flowx-ai/quickstart-connector&amp;utm_campaign=Badge_Grade)
+
 ## License
 
-TODO
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
 
