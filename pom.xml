@@ -17,6 +17,9 @@
     <properties>
         <java.version>11</java.version>
 
+        <commons-tracing-lib.version>0.0.0-PR-9-1-SNAPSHOT</commons-tracing-lib.version>
+        <commons-health-lib.version>0.0.6</commons-health-lib.version>
+
         <spring-boot.version>2.5.4</spring-boot.version>
 
         <spring-security-oauth2.version>2.5.0.RELEASE</spring-security-oauth2.version>
@@ -52,6 +55,23 @@
         </dependency>
 
         <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-undertow</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>ai.flowx</groupId>
+            <artifactId>commons-tracing-lib</artifactId>
+            <version>${commons-tracing-lib.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>ai.flowx.lib</groupId>
+            <artifactId>commons-health-lib</artifactId>
+            <version>${commons-health-lib.version}</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>${lombok.version}</version>
@@ -80,38 +100,6 @@
         </dependency>
 
         <dependency>
-            <groupId>org.springframework.security.oauth</groupId>
-            <artifactId>spring-security-oauth2</artifactId>
-            <version>${spring-security-oauth2.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.springframework</groupId>
-                    <artifactId>spring-webmvc</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.springframework.security</groupId>
-                    <artifactId>spring-security-config</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.springframework.security</groupId>
-                    <artifactId>spring-security-web</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-jwt</artifactId>
-            <version>${spring-security-jwt.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.security.oauth.boot</groupId>
-            <artifactId>spring-security-oauth2-autoconfigure</artifactId>
-            <version>${spring-security-oauth2-autoconfigure.version}</version>
-        </dependency>
-
-        <dependency>
             <groupId>io.jaegertracing</groupId>
             <artifactId>jaeger-client</artifactId>
             <version>${jaeger-client.version}</version>
@@ -127,6 +115,16 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>${commons-lang3.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-actuator</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-actuator-autoconfigure</artifactId>
         </dependency>
 
     </dependencies>
@@ -212,6 +210,12 @@
                         <execution>
                             <goals>
                                 <goal>repackage</goal>
+                            </goals>
+                        </execution>
+                        <execution>
+                            <id>build-info</id>
+                            <goals>
+                                <goal>build-info</goal>
                             </goals>
                         </execution>
                     </executions>

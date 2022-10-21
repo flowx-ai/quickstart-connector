@@ -10,12 +10,30 @@ Basic setup for a connector.
 Includes:
   - Kafka related configs and listener & message sender examples
   - Jaeger related configs & example
+  - config example for activating custom health checks
+
+Please check and follow the TODOs in the code for implementing your own custom FLOWX connector:
+
+1. choose a meaningful name for your connector service and set it in the configuration file
+2. decide what topic should the connector listen on and set it in the configuration file
+3. decide what topic should the connector reply on (this topic name must match the topic pattern the Engine listens on)
+4. adjust number of consumer threads. make sure number of instances * number of threads = number of partitions per topic
+5. define the incoming DTO format
+6. define the outgoing DTO format
+7. implement the business logic for handling messages received from the Engine and sending back a reply
+8. make sure to send back the process instance uuid as a key for the Kafka message
+
+optional steps:
+- decide whether you want to use jaeger tracing in your setup and choose a prefix name in teh configuration file
+- enable health check for all the services you use in the service
 
 [Built with](#built-with) | [Usage](#usage) | [Contributing](#contributing) | [License](#license)
 
 ## Built with
 
 Java 11 & Spring Boot 2.5.4
+
+Uses two custom libraries which are available on nexus.
 
 ## Usage
 
