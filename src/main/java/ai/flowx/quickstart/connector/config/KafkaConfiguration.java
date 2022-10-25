@@ -1,5 +1,6 @@
 package ai.flowx.quickstart.connector.config;
 
+import ai.flowx.quickstart.connector.exception.ExchangeException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -47,7 +48,7 @@ public class KafkaConfiguration {
     @Bean
     public SeekToCurrentErrorHandler errorHandler() {
         SeekToCurrentErrorHandler handler = new SeekToCurrentErrorHandler();
-        //handler.addNotRetryableExceptions(Exception.class); // TODO optional: add custom exception if needed
+        handler.addNotRetryableExceptions(ExchangeException.class);
         return handler;
     }
 

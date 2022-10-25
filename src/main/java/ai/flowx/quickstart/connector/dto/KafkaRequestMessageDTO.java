@@ -7,6 +7,8 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class KafkaRequestMessageDTO { // TODO 5. incoming DTO format
-    private String message;
+public class KafkaRequestMessageDTO {
+    private String fromCurrency;
+    private String toCurrency;
+    private Double amount;
 }
