@@ -17,8 +17,8 @@
     <properties>
         <java.version>11</java.version>
 
-        <commons-tracing-lib.version>0.0.0-PR-9-1-SNAPSHOT</commons-tracing-lib.version>
-        <commons-health-lib.version>0.0.6</commons-health-lib.version>
+        <commons-tracing-lib.version>1.0.0</commons-tracing-lib.version>
+        <commons-health-lib.version>1.0.0</commons-health-lib.version>
 
         <spring-boot.version>2.5.4</spring-boot.version>
 
@@ -41,6 +41,14 @@
         <commons-lang3.version>3.11</commons-lang3.version>
     </properties>
 
+    <repositories>
+        <repository>
+            <id>flowx-github-packages</id>
+            <name>Flowx GitHub Packages Repo</name>
+            <url>https://YOUR_GITHUB_USERNAME:YOUR_GITHUB_ACCESS_TOKEN@maven.pkg.github.com/flowx-ai/public-mvn-packages</url>
+        </repository>
+    </repositories>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -60,7 +68,7 @@
         </dependency>
 
         <dependency>
-            <groupId>ai.flowx</groupId>
+            <groupId>ai.flowx.lib</groupId>
             <artifactId>commons-tracing-lib</artifactId>
             <version>${commons-tracing-lib.version}</version>
         </dependency>
@@ -179,24 +187,6 @@
                     <configuration>
                         <source>${maven.compiler.source}</source>
                     </configuration>
-                </plugin>
-                <plugin>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>properties-maven-plugin</artifactId>
-                    <version>${properties-maven-plugin.version}</version>
-                    <executions>
-                        <execution>
-                            <phase>initialize</phase>
-                            <goals>
-                                <goal>read-project-properties</goal>
-                            </goals>
-                            <configuration>
-                                <files>
-                                    <file>sonar-project.properties</file>
-                                </files>
-                            </configuration>
-                        </execution>
-                    </executions>
                 </plugin>
                 <plugin>
                     <artifactId>maven-clean-plugin</artifactId>

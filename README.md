@@ -33,7 +33,9 @@ optional steps:
 
 Java 11 & Spring Boot 2.5.4
 
-Uses two custom libraries which are available on nexus.
+Uses two custom libraries which are available on [github packages](https://github.com/orgs/flowx-ai/packages?repo_name=public-mvn-packages). To be able to download them using maven, you need to authenticate to github using a personal access token with `read:packages` scope (go to you github account -> settings -> developer settings - > personal access tokens -> tokens (classic) -> generate new token).
+
+An error might occur if you run your project using Intellij, to prevent it you need to delegate IDE build/run action to maven (go to preferences -> maven -> runner -> check the `delegate IDE build/run action to maven` checkbox) .
 
 ## Usage
 
