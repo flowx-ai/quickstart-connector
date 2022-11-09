@@ -17,6 +17,9 @@
     <properties>
         <java.version>11</java.version>
 
+        <commons-tracing-lib.version>1.0.0</commons-tracing-lib.version>
+        <commons-health-lib.version>1.0.0</commons-health-lib.version>
+
         <spring-boot.version>2.5.4</spring-boot.version>
 
         <spring-security-oauth2.version>2.5.0.RELEASE</spring-security-oauth2.version>
@@ -38,6 +41,14 @@
         <commons-lang3.version>3.11</commons-lang3.version>
     </properties>
 
+    <repositories>
+        <repository>
+            <id>flowx-github-packages</id>
+            <name>Flowx GitHub Packages Repo</name>
+            <url>https://YOUR_GITHUB_USERNAME:YOUR_GITHUB_ACCESS_TOKEN@maven.pkg.github.com/flowx-ai/public-mvn-packages</url>
+        </repository>
+    </repositories>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -49,6 +60,23 @@
                     <artifactId>spring-boot-starter-tomcat</artifactId>
                 </exclusion>
             </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-undertow</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>ai.flowx.lib</groupId>
+            <artifactId>commons-tracing-lib</artifactId>
+            <version>${commons-tracing-lib.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>ai.flowx.lib</groupId>
+            <artifactId>commons-health-lib</artifactId>
+            <version>${commons-health-lib.version}</version>
         </dependency>
 
         <dependency>
@@ -80,38 +108,6 @@
         </dependency>
 
         <dependency>
-            <groupId>org.springframework.security.oauth</groupId>
-            <artifactId>spring-security-oauth2</artifactId>
-            <version>${spring-security-oauth2.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.springframework</groupId>
-                    <artifactId>spring-webmvc</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.springframework.security</groupId>
-                    <artifactId>spring-security-config</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.springframework.security</groupId>
-                    <artifactId>spring-security-web</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-jwt</artifactId>
-            <version>${spring-security-jwt.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.security.oauth.boot</groupId>
-            <artifactId>spring-security-oauth2-autoconfigure</artifactId>
-            <version>${spring-security-oauth2-autoconfigure.version}</version>
-        </dependency>
-
-        <dependency>
             <groupId>io.jaegertracing</groupId>
             <artifactId>jaeger-client</artifactId>
             <version>${jaeger-client.version}</version>
@@ -127,6 +123,16 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>${commons-lang3.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-actuator</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-actuator-autoconfigure</artifactId>
         </dependency>
 
     </dependencies>
@@ -183,24 +189,6 @@
                     </configuration>
                 </plugin>
                 <plugin>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>properties-maven-plugin</artifactId>
-                    <version>${properties-maven-plugin.version}</version>
-                    <executions>
-                        <execution>
-                            <phase>initialize</phase>
-                            <goals>
-                                <goal>read-project-properties</goal>
-                            </goals>
-                            <configuration>
-                                <files>
-                                    <file>sonar-project.properties</file>
-                                </files>
-                            </configuration>
-                        </execution>
-                    </executions>
-                </plugin>
-                <plugin>
                     <artifactId>maven-clean-plugin</artifactId>
                     <version>${maven-clean-plugin.version}</version>
                 </plugin>
@@ -212,6 +200,12 @@
                         <execution>
                             <goals>
                                 <goal>repackage</goal>
+                            </goals>
+                        </execution>
+                        <execution>
+                            <id>build-info</id>
+                            <goals>
+                                <goal>build-info</goal>
                             </goals>
                         </execution>
                     </executions>

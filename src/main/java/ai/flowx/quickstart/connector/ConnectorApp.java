@@ -11,8 +11,8 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 
 @Slf4j
-@ComponentScan(basePackages = {"ai.flowx.*"})
 @EnableAutoConfiguration
+@ComponentScan(basePackages = {"ai.flowx.*"})
 public class ConnectorApp {
     /**
      * Main method, used to run the application.
