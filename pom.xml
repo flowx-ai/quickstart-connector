@@ -45,7 +45,7 @@
         <repository>
             <id>flowx-github-packages</id>
             <name>Flowx GitHub Packages Repo</name>
-            <url>https://YOUR_GITHUB_USERNAME:YOUR_GITHUB_ACCESS_TOKEN@maven.pkg.github.com/flowx-ai/public-mvn-packages</url>
+	    <url>https://maven.pkg.github.com/flowx-ai/public-mvn-packages</url>
         </repository>
     </repositories>
 
