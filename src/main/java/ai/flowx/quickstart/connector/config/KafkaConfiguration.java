@@ -1,24 +1,20 @@
 package ai.flowx.quickstart.connector.config;
 
-import ai.flowx.quickstart.connector.dto.KafkaRequestMessageDTO;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.kafka.common.serialization.StringDeserializer;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.annotation.EnableKafka;
 import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
 import org.springframework.kafka.core.ConsumerFactory;
-import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 import org.springframework.kafka.listener.SeekToCurrentErrorHandler;
-import org.springframework.kafka.support.serializer.ErrorHandlingDeserializer;
-import org.springframework.kafka.support.serializer.JsonDeserializer;
+import org.springframework.kafka.support.converter.RecordMessageConverter;
+import org.springframework.kafka.support.converter.StringJsonMessageConverter;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 import javax.annotation.PostConstruct;
 import java.time.Duration;
-import java.util.Map;
 
 @Slf4j
 @Configuration
@@ -56,21 +52,16 @@ public class KafkaConfiguration {
     }
 
     @Bean
-    public ConsumerFactory<String, KafkaRequestMessageDTO> consumerFactoryKafkaMessage(KafkaProperties kafkaProperties) {
-        Map<String, Object> props = kafkaProperties.buildConsumerProperties();
-        props.put(JsonDeserializer.REMOVE_TYPE_INFO_HEADERS, true);
-        props.put(JsonDeserializer.USE_TYPE_INFO_HEADERS, false);
-        props.put(JsonDeserializer.VALUE_DEFAULT_TYPE, KafkaRequestMessageDTO.class);
-
-        return new DefaultKafkaConsumerFactory<>(props, new StringDeserializer(),
-                new ErrorHandlingDeserializer<>(new JsonDeserializer<>(KafkaRequestMessageDTO.class)));
+    public StringJsonMessageConverter messageConverter(ObjectMapper objectMapper) {
+        return new StringJsonMessageConverter(objectMapper);
     }
 
     @Bean
-    public ConcurrentKafkaListenerContainerFactory<String, KafkaRequestMessageDTO> listenerContainerFactory(SeekToCurrentErrorHandler errorHandler, KafkaProperties kafkaProperties) {
-        ConcurrentKafkaListenerContainerFactory<String, KafkaRequestMessageDTO> factory =
+    public ConcurrentKafkaListenerContainerFactory<String, Object> listenerContainerFactory(ConsumerFactory consumerFactory, RecordMessageConverter messageConverter, SeekToCurrentErrorHandler errorHandler) {
+        ConcurrentKafkaListenerContainerFactory<String, Object> factory =
                 new ConcurrentKafkaListenerContainerFactory<>();
-        factory.setConsumerFactory(consumerFactoryKafkaMessage(kafkaProperties));
+        factory.setConsumerFactory(consumerFactory);
+        factory.setMessageConverter(messageConverter);
         factory.setConcurrency(threadsNumber);
         factory.setErrorHandler(errorHandler);
         factory.getContainerProperties().setConsumerTaskExecutor(executor);
