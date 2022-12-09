@@ -5,7 +5,9 @@
 [![String boot version](https://img.shields.io/badge/spring%20boot%20version-2.5.4-9cf.svg?color=9cf)](https://spring.io/projects/spring-boot)
 [![License: MIT](https://img.shields.io/badge/license-MIT-orange.svg)](https://opensource.org/licenses/MIT)
 
-Basic setup for a connector.
+Basic setup for a connector. To be used as starting point for FLOWX connectors.
+
+You can see an implementation example for a simple [currency exchange connector here](https://github.com/flowx-ai/quickstart-connector/pull/4).
 
 Includes:
   - Kafka related configs and listener & message sender examples
