@@ -1,7 +1,7 @@
 package ai.flowx.quickstart.connector.service.impl;
 
+import ai.flowx.commons.kafka.KafkaUtils;
 import ai.flowx.commons.trace.aop.Trace;
-import ai.flowx.commons.trace.service.KafkaUtils;
 import ai.flowx.quickstart.connector.dto.KafkaRequestMessageDTO;
 import ai.flowx.quickstart.connector.dto.KafkaResponseMessageDTO;
 import ai.flowx.quickstart.connector.service.MessageHandlerService;

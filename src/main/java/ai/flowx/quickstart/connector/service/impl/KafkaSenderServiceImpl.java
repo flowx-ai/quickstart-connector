@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 
-import static ai.flowx.commons.trace.service.KafkaUtils.headersToList;
+import static ai.flowx.commons.kafka.KafkaUtils.headersToList;
 
 @Slf4j
 @Component
