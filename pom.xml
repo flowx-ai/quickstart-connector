@@ -17,7 +17,7 @@
     <properties>
         <java.version>11</java.version>
 
-        <commons-tracing-lib.version>1.0.0</commons-tracing-lib.version>
+        <commons-tracing-lib.version>1.0.1</commons-tracing-lib.version>
         <commons-health-lib.version>1.0.0</commons-health-lib.version>
 
         <spring-boot.version>2.5.4</spring-boot.version>
@@ -45,7 +45,7 @@
         <repository>
             <id>flowx-github-packages</id>
             <name>Flowx GitHub Packages Repo</name>
-	    <url>https://maven.pkg.github.com/flowx-ai/public-mvn-packages</url>
+            <url>https://maven.pkg.github.com/flowx-ai/public-mvn-packages</url>
         </repository>
     </repositories>
 
@@ -209,15 +209,6 @@
                             </goals>
                         </execution>
                     </executions>
-                    <configuration>
-                        <mainClass>${start-class}</mainClass>
-                        <fork>true</fork>
-                        <!--
-                        Enable the line below to have remote debugging of your application on port 5005
-                        <jvmArguments>-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005</jvmArguments>
-                        -->
-                    </configuration>
-
                 </plugin>
             </plugins>
         </pluginManagement>

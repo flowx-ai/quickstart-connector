@@ -18,6 +18,7 @@ Please check and follow the TODOs in the code for implementing your own custom F
 
 1. choose a meaningful name for your connector service and set it in the configuration file
 2. decide what topic should the connector listen on and set it in the configuration file
+   1. if the connector needs to listen on more than one topic, make sure to add settings & configure a separate thread pool executor for each needed topic. Please see `KafkaConfiguration` for an example configuration. 
 3. decide what topic should the connector reply on (this topic name must match the topic pattern the Engine listens on)
 4. adjust number of consumer threads. make sure number of instances * number of threads = number of partitions per topic
 5. define the incoming DTO format
@@ -35,7 +36,7 @@ optional steps:
 
 Java 11 & Spring Boot 2.5.4
 
-Uses two custom libraries which are available on [github packages](https://github.com/orgs/flowx-ai/packages?repo_name=public-mvn-packages). To be able to download them using maven, you need to authenticate to github using a personal access token with `read:packages` scope (go to you github account -> settings -> developer settings - > personal access tokens -> tokens (classic) -> generate new token).
+Uses some custom libraries which are available on [github packages](https://github.com/orgs/flowx-ai/packages?repo_name=public-mvn-packages). To be able to download them using maven, you need to authenticate to github using a personal access token with `read:packages` scope (go to you github account -> settings -> developer settings - > personal access tokens -> tokens (classic) -> generate new token).
 
 An error might occur if you run your project using Intellij, to prevent it you need to delegate IDE build/run action to maven (go to preferences -> maven -> runner -> check the `delegate IDE build/run action to maven` checkbox) .
 
