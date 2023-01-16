@@ -9,6 +9,10 @@ import lombok.ToString;
 @Setter
 @ToString
 @Builder
-public class KafkaResponseMessageDTO { // TODO 6. outgoing DTO format
-    private String response;
+public class KafkaResponseMessageDTO {
+    private String fromCurrency;
+    private String toCurrency;
+    private Double initialAmount;
+    private Double exchangedAmount;
+    private String errorMessage;
 }

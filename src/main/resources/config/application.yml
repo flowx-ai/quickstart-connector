@@ -11,24 +11,26 @@ server:
 
 spring:
   application:
-    name: quickstart-connector # TODO 1. choose a meaningful name for your connector service
+    name: currency exchange
   jackson:
     serialization:
       write_dates_as_timestamps: false
       fail-on-empty-beans: false
 
 application:
-  jaeger:  # TODO optional: decide whether you want to use jaeger tracing in your setup and choose a prefix name
-    enabled: false
-    prefix: connector
+  jaeger:
+    enabled: true
+    prefix: exchange
 
-management: # TODO optional: enable health check for all the services you use in case you add any
+management:
   health:
     kafka.enabled: true
-    # db.enabled: true
-    # mongo.enabled: true
-    # redis.enabled: true
-    # elasticsearch.enabled: true
+
+exchangerate-api:
+  key: YOUR_API_KEY # get your free api key here https://www.exchangerate-api.com/docs/pair-conversion-requests
+  scheme: https
+  host: v6.exchangerate-api.com
+  path: v6/{apiKey}/pair/{fromCurrency}/{toCurrency}/{amount}
 
 spring.config.import: application-management.yml, application-kafka.yml
 ---

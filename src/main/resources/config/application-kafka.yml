@@ -23,11 +23,11 @@ spring:
           classes: io.opentracing.contrib.kafka.TracingConsumerInterceptor
 
 kafka:
-  consumer.threads: 3  # TODO 4. adjust number of consumer threads. make sure number of instances * number of threads = number of partitions per topic
+  consumer.threads: 3
   auth-exception-retry-interval: 10
   topic:
-    in: ai.flowx.connector.in # TODO 2. decide what topic should the connector listen on
-    out: ai.flowx.updates.from_connector # TODO 3. decide what topic should the connector reply on (this topic name must match the topic pattern the Engine listens on)
+    in: ai.flowx.currency.exchange.in
+    out: ai.flowx.updates.currency.exchange
 
 ---
 spring.config.activate.on-profile: kafka-auth
