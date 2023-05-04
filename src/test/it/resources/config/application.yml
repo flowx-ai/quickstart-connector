@@ -37,7 +37,11 @@ starwars-api:
 
 spring.config.import: application-management.yml, application-kafka.yml
 ---
-spring.config.activate.on-profile: dev
+#spring.config.activate.on-profile: it
+#
+#kafka.in.connector: "ai.flowx.starwars-ships.in"
+#kafka.out.connector: "ai.flowx.starwars-ships.out"
 
-logging.level.ROOT: DEBUG
-logging.level.ai.flowx.quickstart.connector: DEBUG
+
+#logging.level.ROOT: DEBUG
+#logging.level.ai.flowx.quickstart.connector: DEBUG

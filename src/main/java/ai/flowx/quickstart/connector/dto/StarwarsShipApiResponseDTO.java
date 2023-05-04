@@ -1,15 +1,9 @@
 package ai.flowx.quickstart.connector.dto;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.Data;
 
-@Getter
-@Setter
-@ToString
-@Builder
-public class KafkaResponseMessageDTO { // TODO 6. outgoing DTO format
+@Data
+public class StarwarsShipApiResponseDTO implements BaseApiResponseDTO{
     private String name;
     private String model;
     private String starship_class;
@@ -20,6 +14,4 @@ public class KafkaResponseMessageDTO { // TODO 6. outgoing DTO format
     private String passengers;
     private String hyperdrive_rating;
     private String cargo_capacity;
-
-    private String errorMessage;
 }

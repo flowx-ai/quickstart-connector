@@ -26,7 +26,7 @@ public class ConnectorApp {
     }
 
     private static void logApplicationStartup(Environment env) {
-        String protocol = "http";
+       String protocol = "http";
         if (env.getProperty("server.ssl.key-store") != null) {
             protocol = "https";
         }

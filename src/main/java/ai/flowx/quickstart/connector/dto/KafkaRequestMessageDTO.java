@@ -8,5 +8,5 @@ import lombok.ToString;
 @Setter
 @ToString
 public class KafkaRequestMessageDTO { // TODO 5. incoming DTO format
-    private String message;
+    private String Id;
 }
