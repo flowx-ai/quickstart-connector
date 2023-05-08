@@ -29,11 +29,6 @@ kafka:
     in: ai.flowx.starwars-ships.in # TODO 2. decide what topic should the connector listen on
     out: ai.flowx.starwars-ships.out # TODO 3. decide what topic should the connector reply on (this topic name must match the topic pattern the Engine listens on)
 
-  in:
-    connector: ai.flowx.starwars-ships.in
-  out:
-    connector: ai.flowx.starwars-ships.out
-
 ---
 spring.config.activate.on-profile: kafka-auth
 

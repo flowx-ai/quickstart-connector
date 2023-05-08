@@ -26,11 +26,11 @@ public class RespondOnKafkaMessageIT extends BaseIT {
     private static final int KAFKA_CONSUMER_WAIT_TIME_SEC = 10;
 
 
-    @Value("${kafka.in.connector}")
-    private String topicIn;/// = "ai.flowx.starwars-ships.in";
+    @Value("${kafka.topic.in}")
+    private String topicIn;
 
-    @Value("${kafka.out.connector}")
-    private String topicOut;/// = "ai.flowx.starwars-ships.out";
+    @Value("${kafka.topic.out}")
+    private String topicOut;
 
 
 

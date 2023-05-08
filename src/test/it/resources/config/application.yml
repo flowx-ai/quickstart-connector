@@ -25,10 +25,6 @@ application:
 management: # TODO optional: enable health check for all the services you use in case you add any
   health:
     kafka.enabled: true
-    # db.enabled: true
-    # mongo.enabled: true
-    # redis.enabled: true
-    # elasticsearch.enabled: true
 
 starwars-api:
   scheme: https
@@ -36,12 +32,3 @@ starwars-api:
   path: api/starships/{id}
 
 spring.config.import: application-management.yml, application-kafka.yml
----
-#spring.config.activate.on-profile: it
-#
-#kafka.in.connector: "ai.flowx.starwars-ships.in"
-#kafka.out.connector: "ai.flowx.starwars-ships.out"
-
-
-#logging.level.ROOT: DEBUG
-#logging.level.ai.flowx.quickstart.connector: DEBUG

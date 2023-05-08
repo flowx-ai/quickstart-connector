@@ -58,9 +58,6 @@ public abstract class BaseIT {
     @Autowired
     public ObjectMapper objectMapper;
 
-//    @Autowired
-//    LocalDateTimeDeserializer localDateTimeDeserializer;
-
     public JsonResourceReader jsonResourceReader;
 
     public KafkaApi kafkaApi;
@@ -73,20 +70,13 @@ public abstract class BaseIT {
 
     @DynamicPropertySource
     static void setDynamicProperties(DynamicPropertyRegistry registry) {
-//        registry.add("spring.data.mongodb.uri", mongoDBContainer::getReplicaSetUrl);
         registry.add("spring.kafka.bootstrap-servers", kafkaContainer::getBootstrapServers);
-//        registry.add("spring.redis.host", redisContainer::getHost);
-//        registry.add("spring.redis.port", () -> redisContainer.getMappedPort(REDIS_PORT).toString());
-//        registry.add("spring.redis.password", () -> "potato");
-//        registry.add("simplejavamail.smtp.host", () -> mailhogContainer.getContainerIpAddress());
-//        registry.add("simplejavamail.smtp.port", () -> mailhogContainer.getMappedPort(SMTP_PORT));
     }
 
     @PostConstruct
     public void init() {
         jsonResourceReader = new JsonResourceReader(objectMapper);
         kafkaApi = new KafkaApi(kafkaContainer, adminClient);
-//        objectMapper.registerModule(new SimpleModule().addDeserializer(LocalDateTime.class, localDateTimeDeserializer));
     }
 
     @BeforeAll
@@ -101,10 +91,11 @@ public abstract class BaseIT {
         props.put(AdminClientConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
         adminClient = AdminClient.create(props);
 
+        // setup topics
 
+        // ⁉️ maybe do this in a better way ...
         String[] topics = { "ai.flowx.starwars-ships.in", "ai.flowx.starwars-ships.out"};
 
-        // setup topics
         var newTopics = Arrays.stream(topics)
                 .map(topic -> new NewTopic(topic, 1, (short) 1))
                 .collect(Collectors.toList());
