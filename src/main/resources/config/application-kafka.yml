@@ -26,8 +26,8 @@ kafka:
   consumer.threads: 3  # TODO 4. adjust number of consumer threads. make sure number of instances * number of threads = number of partitions per topic
   auth-exception-retry-interval: 10
   topic:
-    in: ai.flowx.starwars-ships.in # TODO 2. decide what topic should the connector listen on
-    out: ai.flowx.starwars-ships.out # TODO 3. decide what topic should the connector reply on (this topic name must match the topic pattern the Engine listens on)
+    in: ai.flowx.easy-connector.in # TODO 2. decide what topic should the connector listen on
+    out: ai.flowx.easy-connector.out # TODO 3. decide what topic should the connector reply on (this topic name must match the topic pattern the Engine listens on)
 
 ---
 spring.config.activate.on-profile: kafka-auth

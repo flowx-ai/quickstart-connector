@@ -9,17 +9,7 @@ import lombok.ToString;
 @Setter
 @ToString
 @Builder
-public class KafkaResponseMessageDTO { // TODO 6. outgoing DTO format
+public class KafkaResponseMessageDTO implements BaseApiResponseDTO { // TODO 6. outgoing DTO format
     private String name;
-    private String model;
-    private String starship_class;
-    private String manufacturer;
-    private String cost_in_credits;
-    private String length;
-    private String crew;
-    private String passengers;
-    private String hyperdrive_rating;
-    private String cargo_capacity;
-
     private String errorMessage;
 }

@@ -11,27 +11,22 @@ server:
 
 spring:
   application:
-    name: starwars-ships # TODO 1. choose a meaningful name for your connector service
+    name: easy-connector-name # TODO 1. choose a meaningful name for your connector service
   jackson:
     serialization:
       write_dates_as_timestamps: false
       fail-on-empty-beans: false
 
 application:
-  jaeger:  # TODO optional: decide whether you want to use jaeger tracing in your setup and choose a prefix name
+  jaeger: # TODO optional: decide whether you want to use jaeger tracing in your setup and choose a prefix name
     enabled: false
     prefix: connector
 
 management: # TODO optional: enable health check for all the services you use in case you add any
   health:
-    kafka.enabled: true
+    kafka.enabled: false
 
-starwars-api:
-  scheme: https
-  host: swapi.dev
-  path: api/starships/{id}
-
-spring.config.import: application-management.yml, application-kafka.yml
+spring.config.import: application-kafka.yml
 ---
 spring.config.activate.on-profile: dev
 

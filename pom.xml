@@ -43,14 +43,6 @@
 
     </properties>
 
-    <repositories>
-        <repository>
-            <id>flowx-github-packages</id>
-            <name>Flowx GitHub Packages Repo</name>
-            <url>https://maven.pkg.github.com/flowx-ai/public-mvn-packages</url>
-        </repository>
-    </repositories>
-
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -69,17 +61,6 @@
             <artifactId>spring-boot-starter-undertow</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>ai.flowx.lib</groupId>
-            <artifactId>commons-tracing-lib</artifactId>
-            <version>${commons-tracing-lib.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>ai.flowx.lib</groupId>
-            <artifactId>commons-health-lib</artifactId>
-            <version>${commons-health-lib.version}</version>
-        </dependency>
 
         <dependency>
             <groupId>org.projectlombok</groupId>

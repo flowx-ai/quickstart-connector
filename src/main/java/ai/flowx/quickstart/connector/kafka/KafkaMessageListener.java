@@ -1,6 +1,5 @@
 package ai.flowx.quickstart.connector.kafka;
 
-import ai.flowx.commons.trace.aop.Trace;
 import ai.flowx.quickstart.connector.dto.KafkaRequestMessageDTO;
 import ai.flowx.quickstart.connector.service.MessageHandlerService;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -20,8 +19,7 @@ public class KafkaMessageListener {
 
     private final ObjectMapper objectMapper;
 
-    @Trace
-    @KafkaListener(topicPattern = "${kafka.topic.in}", containerFactory = "listenerContainerFactory")
+    @KafkaListener(topicPattern = "${kafka.topic.in}")
     public void consume(ConsumerRecord<String, String> record) {
         log.info("Received new message from kafka {}.", record.value());
 
