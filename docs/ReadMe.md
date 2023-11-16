@@ -14,4 +14,4 @@
 }
 ```
 10. Check the last message from the `ai.flowx.easy.connector.out` topic.
-11. Add you business logic to `MessageHandlerServiceImpl` `process` method.
+11. Add your business logic to `MessageHandlerServiceImpl` `process` method.
