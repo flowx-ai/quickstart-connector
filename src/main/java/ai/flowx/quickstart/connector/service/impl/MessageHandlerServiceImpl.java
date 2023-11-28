@@ -24,19 +24,19 @@ public class MessageHandlerServiceImpl implements MessageHandlerService {
 
         KafkaResponseMessageDTO.KafkaResponseMessageDTOBuilder responseMessageDTOBuilder = KafkaResponseMessageDTO.builder();
 
-        // Add you custom business logic here
+        // Add your message processing logic here
         try {
             String name = "John Doe";
             responseMessageDTOBuilder.name(name);
 
             // If there is an error, throw a ConnectorException
-            // throw new ConnectorException("Error message");
+            // Throw new ConnectorException("Error message");
         } catch (ConnectorException exc) {
             responseMessageDTOBuilder.errorMessage(exc.getMessage());
             messageSenderService.sendMessage(headers, processInstanceUuid, responseMessageDTOBuilder.build());
         }
 
-        // Send processed message
+        // Send the processed message
         messageSenderService.sendMessage(headers, processInstanceUuid, responseMessageDTOBuilder.build());
     }
 }
