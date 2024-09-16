@@ -17,11 +17,6 @@ spring:
       write_dates_as_timestamps: false
       fail-on-empty-beans: false
 
-application:
-  jaeger:  # TODO optional: decide whether you want to use jaeger tracing in your setup and choose a prefix name
-    enabled: false
-    prefix: connector
-
 management: # TODO optional: enable health check for all the services you use in case you add any
   health:
     kafka.enabled: true

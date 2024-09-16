@@ -1,7 +1,6 @@
 package ai.flowx.quickstart.connector.service.impl;
 
 import ai.flowx.commons.kafka.KafkaUtils;
-import ai.flowx.commons.trace.aop.Trace;
 import ai.flowx.quickstart.connector.dto.KafkaRequestMessageDTO;
 import ai.flowx.quickstart.connector.dto.KafkaResponseMessageDTO;
 import ai.flowx.quickstart.connector.service.MessageHandlerService;
@@ -11,7 +10,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.common.header.Headers;
 import org.springframework.stereotype.Service;
 
-@Trace
 @Slf4j
 @Service
 @RequiredArgsConstructor
