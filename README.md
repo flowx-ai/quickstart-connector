@@ -1,8 +1,8 @@
 # FLOWX Quickstart for Connectors
 
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/ec3388834bc74032ac69bdf8adf050f3)](https://www.codacy.com?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=flowx-ai/quickstart-connector&amp;utm_campaign=Badge_Grade)
-[![Java version](https://img.shields.io/badge/java%20version-11-yellow.svg?color=yellow)](https://adoptopenjdk.net/index.html?variant=openjdk11&jvmVariant=hotspot)
-[![String boot version](https://img.shields.io/badge/spring%20boot%20version-2.5.4-9cf.svg?color=9cf)](https://spring.io/projects/spring-boot)
+[![Java version](https://img.shields.io/badge/java%20version-17-yellow.svg?color=yellow)](https://adoptopenjdk.net/index.html?variant=openjdk11&jvmVariant=hotspot)
+[![String boot version](https://img.shields.io/badge/spring%20boot%20version-3.2.9-9cf.svg?color=9cf)](https://spring.io/projects/spring-boot)
 [![License: MIT](https://img.shields.io/badge/license-MIT-orange.svg)](https://opensource.org/licenses/MIT)
 
 Basic setup for a connector. To be used as starting point for FLOWX connectors.
@@ -34,7 +34,7 @@ optional steps:
 
 ## Built with
 
-Java 11 & Spring Boot 2.5.4
+Java 17 & Spring Boot 3.2.9
 
 Uses some custom libraries which are available on [github packages](https://github.com/orgs/flowx-ai/packages?repo_name=public-mvn-packages). To be able to download them using maven, you need to authenticate to github using a personal access token with `read:packages` scope (go to you github account -> settings -> developer settings - > personal access tokens -> tokens (classic) -> generate new token).
 

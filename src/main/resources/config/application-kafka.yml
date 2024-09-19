@@ -6,8 +6,6 @@ spring:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
       properties:
-        interceptor:
-          classes: io.opentracing.contrib.kafka.TracingProducerInterceptor
         message:
           max:
             bytes: ${KAFKA_MESSAGE_MAX_BYTES:52428800} #50MB
@@ -18,9 +16,6 @@ spring:
       group-id: kafka-connector-group
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-      properties:
-        interceptor:
-          classes: io.opentracing.contrib.kafka.TracingConsumerInterceptor
 
 kafka:
   consumer.threads: 3  # TODO 4. adjust number of consumer threads. make sure number of instances * number of threads = number of partitions per topic
